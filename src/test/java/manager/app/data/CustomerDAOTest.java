@@ -8,13 +8,31 @@ import manager.app.model.Customer;
 class CustomerDAOTest {
     CustomerDAO customerDAO;
     BankAccountDAO bankAccountDAO;
+    Customer customer1;
+    Customer customer2;
+    Customer customer3;
 
     @BeforeEach
     void setup(){
-        customerDAO = new CustomerDAO();
-        bankAccountDAO = new BankAccountDAO();
         AccountNumberSequencer.resetAccountNumber();
         CustomerIdSequencer.resetCustomerId();
+
+        customerDAO = new CustomerDAO();
+
+        customer1 = new Customer("Odi", "Sombathkamria", "odi@gmail.com");
+        customer2 = new Customer("Nader", "Alhamwi", "nader@gmail.com");
+        customer3 = new Customer("Christopher", "Svensson", "christopher@gmail.com");
+
+        customerDAO.addCustomerToList(customer1);
+        customerDAO.addCustomerToList(customer2);
+        customerDAO.addCustomerToList(customer3);
+
+        customerDAO.addEmailToList("A@email.com");
+        customerDAO.addEmailToList("B@email.com");
+        customerDAO.addEmailToList("C@email.com");
+        customerDAO.addEmailToList("D@email.com");
+        customerDAO.addEmailToList("E@email.com");
+        customerDAO.addEmailToList("nonUnique@email.com");
     }
 
     @Test
@@ -38,12 +56,6 @@ class CustomerDAOTest {
         //Arrange
 
         //Act
-        customerDAO.addEmailToList("A@email.com");
-        customerDAO.addEmailToList("B@email.com");
-        customerDAO.addEmailToList("C@email.com");
-        customerDAO.addEmailToList("D@email.com");
-        customerDAO.addEmailToList("E@email.com");
-
         boolean emailIsValid = customerDAO.emailIsUnique("uniqueEmail@email.com");
 
         //Assert
@@ -55,12 +67,6 @@ class CustomerDAOTest {
         //Arrange
 
         //Act
-        customerDAO.addEmailToList("A@email.com");
-        customerDAO.addEmailToList("B@email.com");
-        customerDAO.addEmailToList("C@email.com");
-        customerDAO.addEmailToList("D@email.com");
-        customerDAO.addEmailToList("nonUnique@email.com");
-
         boolean emailIsValid = customerDAO.emailIsUnique("nonUnique@email.com");
 
         //Assert
@@ -70,15 +76,8 @@ class CustomerDAOTest {
     @Test
     void should_Return_A_Customer_With_A_Given_Id() {
         //Arrange
-        Customer customer1 = new Customer("Odi", "Sombathkamria", "odi@gmail.com");
-        Customer customer2 = new Customer("Nader", "Alhamwi", "nader@gmail.com");
-        Customer customer3 = new Customer("Christopher", "Svensson", "christopher@gmail.com");
 
         //Act
-        customerDAO.addCustomerToList(customer1);
-        customerDAO.addCustomerToList(customer2);
-        customerDAO.addCustomerToList(customer3);
-
         Customer expectedCustomer = customerDAO.searchById(customer3.getId());
 
         // Assert
@@ -88,15 +87,8 @@ class CustomerDAOTest {
     @Test
     void should_Return_Null_When_Id_Is_Not_Valid() {
         //Arrange
-        Customer customer1 = new Customer("Odi", "Sombathkamria", "odi@gmail.com");
-        Customer customer2 = new Customer("Nader", "Alhamwi", "nader@gmail.com");
-        Customer customer3 = new Customer("Christopher", "Svensson", "christopher@gmail.com");
 
         //Act
-        customerDAO.addCustomerToList(customer1);
-        customerDAO.addCustomerToList(customer2);
-        customerDAO.addCustomerToList(customer3);
-
         Customer expectedCustomer = customerDAO.searchById(100);
 
         // Assert
@@ -106,15 +98,8 @@ class CustomerDAOTest {
     @Test
     void should_Remove_A_Customer_With_A_Given_Id() {
         //Arrange
-        Customer customer1 = new Customer("Odi", "Sombathkamria", "odi@gmail.com");
-        Customer customer2 = new Customer("Nader", "Alhamwi", "nader@gmail.com");
-        Customer customer3 = new Customer("Christopher", "Svensson", "christopher@gmail.com");
 
         //Act
-        customerDAO.addCustomerToList(customer1);
-        customerDAO.addCustomerToList(customer2);
-        customerDAO.addCustomerToList(customer3);
-
         boolean customerRemoved = customerDAO.removeCustomerFromList(customer2.getId());
 
         // Assert
@@ -124,15 +109,8 @@ class CustomerDAOTest {
     @Test
     void should_Not_Remove_A_Customer_When_Id_Is_Invalid() {
         //Arrange
-        Customer customer1 = new Customer("Odi", "Sombathkamria", "odi@gmail.com");
-        Customer customer2 = new Customer("Nader", "Alhamwi", "nader@gmail.com");
-        Customer customer3 = new Customer("Christopher", "Svensson", "christopher@gmail.com");
 
         //Act
-        customerDAO.addCustomerToList(customer1);
-        customerDAO.addCustomerToList(customer2);
-        customerDAO.addCustomerToList(customer3);
-
         boolean customerRemoved = customerDAO.removeCustomerFromList(100);
 
         // Assert
