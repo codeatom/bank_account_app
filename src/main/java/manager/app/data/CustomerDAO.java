@@ -24,13 +24,13 @@ public class CustomerDAO {
         customerEmailList.add(email);
     }
 
-    public void resetCustomerList() {
-        customerList.clear();
-    }
+  //  public void resetCustomerList() {
+  //      customerList.clear();
+  //  }
 
-    public void resetCustomerEmailList() {
-        customerEmailList.clear();
-    }
+  //  public void resetCustomerEmailList() {
+  //      customerEmailList.clear();
+  //  }
 
     public Customer createCustomer(String firstName, String lastName, String email){
         Customer customer = new Customer(firstName, lastName, email);

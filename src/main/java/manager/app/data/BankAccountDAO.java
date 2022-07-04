@@ -18,9 +18,9 @@ public class BankAccountDAO {
         bankAccountList.add(bankAccount);
     }
 
-    public void resetBankAccountList() {
-        bankAccountList.clear();
-    }
+  //  public void resetBankAccountList() {
+  //      bankAccountList.clear();
+  //  }
 
     public BankAccount createBankAccount(Customer customer, double balance, CustomerDAO customerDAO, BankAccountDAO bankAccountDAO){
         BankAccount bankAccount = new BankAccount(customer.getId(), balance);

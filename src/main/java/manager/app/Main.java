@@ -54,7 +54,7 @@ public class Main {
         bankAccountDAO.closeAccount(customer, customer.getBankAccountList().get(2).getAccountNumber());
 
         System.out.println("");
-        System.out.println("Customer's remaining account/s after closing one account");
+        System.out.println("Customer's remaining account/s after closing one account: ");
         for(int i = 0; i < customer.getBankAccountList().size(); i++){
             System.out.println("account number of customer's account " + (i + 1) + " is: " + customer.getBankAccountList().get(i).getAccountNumber());
         }

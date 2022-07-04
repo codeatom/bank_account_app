@@ -9,7 +9,7 @@ class AccountNumberSequencerTest {
     @Test
     void Should_Return_Sequential_int() {
         //Arrange
-        int bankBranchNumber = AccountNumberSequencer.readBankBranchNumber();
+        int bankBranchNumber = AccountNumberSequencer.readBankNumber();
         int expectedId = bankBranchNumber + 4;
 
         //Act
